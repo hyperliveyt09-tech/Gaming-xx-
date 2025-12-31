@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Gaming xx] | India's Ultimate Esports Arena</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-bg: #0F172A;
+            --secondary-bg: #1E293B;
+            --text-primary: #E2E8F0;
+            --text-secondary: #94A3B8;
+            --accent-color: #FACC15;
+            --border-color: #334155;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Utility Classes */
+        .text-accent { color: var(--accent-color) !important; }
+        .bg-secondary-custom { background-color: var(--secondary-bg); }
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: #000;
+            font-weight: 700;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .btn-accent:hover {
+            background-color: #eab308;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(250, 204, 21, 0.3);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+        .nav-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            object-fit: cover;
+        }
+        .nav-link {
+            color: var(--text-primary) !important;
+            font-weight: 500;
+            margin: 0 10px;
+        }
+        .nav-link:hover { color: var(--accent-color) !important; }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+        .hero-image-container {
+            margin-top: 50px;
+            position: relative;
+        }
+        .hero-img {
+            max-width: 800px;
+            width: 90%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Game Slider */
+        .game-slider-section {
+            padding: 80px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .swiper-slide {
+            width: 350px;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Step Cards */
+        .step-card {
+            background: var(--primary-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px 30px;
+            border-radius: 16px;
+            position: relative;
+            height: 100%;
+            transition: var(--transition);
+            z-index: 1;
+        }
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+        }
+        .step-number {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.03);
+            z-index: -1;
+        }
+        .step-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        /* Features */
+        .feature-item {
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.02);
+        }
+
+        /* Accordion */
+        .accordion-item {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            margin-bottom: 10px;
+            border-radius: 8px !important;
+            overflow: hidden;
+        }
+        .accordion-button {
+            background-color: var(--secondary-bg);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: var(--secondary-bg);
+            color: var(--accent-color);
+            box-shadow: none;
+        }
+        .accordion-body { color: var(--text-secondary); }
+
+        /* Footer & Mobile Bar */
+        footer {
+            padding: 50px 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .sticky-mobile-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--secondary-bg);
+            padding: 15px;
+            z-index: 999;
+            border-top: 2px solid var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .sticky-mobile-bar { display: block; }
+            body { padding-bottom: 80px; }
+            .hero-title { font-size: 2rem; }
+        }
+
+        /* Modal Styles */
+        .modal-content {
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+        .modal-header { border-bottom: 1px solid var(--border-color); }
+        .modal-footer { border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="https://i.ibb.co/99jkv3qt/IMG-20251222-WA0009.jpg" alt="Logo" class="nav-logo me-2">
+                <span class="fw-bold text-white">[Gaming xx]</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#how-to-play">How to Play</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">More</a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#faq">FAQ</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms & Conditions</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#fairplayModal">Fair Play</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#refundModal">Refund Policy</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="https://www.mediafire.com/file/4iat3ako72tlkyq/gaming_xx_.apk/file" class="btn btn-accent btn-sm">Download App</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section container">
+        <div data-aos="fade-up">
+            <h1 class="hero-title">India's Ultimate <br><span class="text-accent">Esports Arena</span> is Here</h1>
+            <p class="text-secondary mx-auto mb-4" style="max-width: 600px;">
+                Experience the thrill of competitive gaming. Join daily tournaments, showcase your skills, and win real cash rewards instantly.
+            </p>
+            <div class="d-grid gap-3 d-sm-block">
+                <a href="https://www.mediafire.com/file/4iat3ako72tlkyq/gaming_xx_.apk/file" class="btn btn-accent btn-lg mb-2">Download & Start Playing</a><br>
+                <span class="text-accent fw-bold"><i class="bi bi-gift-fill me-2"></i>Get ₹5 FREE on Signup!</span>
+            </div>
+        </div>
+        <div class="hero-image-container" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://i.ibb.co/99jkv3qt/IMG-20251222-WA0009.jpg" alt="Hero" class="hero-img">
+        </div>
+    </section>
+
+    <section class="game-slider-section bg-secondary-custom">
+        <div class="container mb-5 text-center">
+            <h2 class="fw-bold" data-aos="fade-up">Tournaments for Your Favorite Games</h2>
+        </div>
+        <div class="swiper gameSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="https://i.ibb.co/93WNq28k/IMG-20251222-WA0010.jpg" alt="Game 1"></div>
+                <div class="swiper-slide"><img src="https://i.ibb.co/LhDjSJk2/IMG-20251222-WA0007.jpg" alt="Game 2"></div>
+                <div class="swiper-slide"><img src="https://i.ibb.co/v4dWkL4N/IMG-20251222-WA0008.jpg" alt="Game 3"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to-play" class="py-5 container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" data-aos="fade-up">How It Works</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="step-card">
+                    <span class="step-number">01</span>
+                    <i class="bi bi-download step-icon"></i>
+                    <h4 class="fw-bold">Download & Register</h4>
+                    <p class="text-secondary">Install the [Gaming xx] APK and create your profile in seconds.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="step-card">
+                    <span class="step-number">02</span>
+                    <i class="bi bi-controller step-icon"></i>
+                    <h4 class="fw-bold">Join a Tournament</h4>
+                    <p class="text-secondary">Choose from various entry-fee or free matches and secure your slot.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="step-card">
+                    <span class="step-number">03</span>
+                    <i class="bi bi-trophy step-icon"></i>
+                    <h4 class="fw-bold">Play, Win & Withdraw</h4>
+                    <p class="text-secondary">Compete with real players and get your winnings credited instantly to your wallet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-5 bg-secondary-custom">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" data-aos="fade-up">Why Choose [Gaming xx]?</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="feature-item d-flex align-items-start">
+                        <i class="bi bi-shield-check text-accent fs-1 me-4"></i>
+                        <div>
+                            <h5 class="fw-bold">100% Secure & Fair Play</h5>
+                            <p class="text-secondary">Advanced anti-cheat systems ensure every tournament is fair for all participants.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="feature-item d-flex align-items-start">
+                        <i class="bi bi-lightning-charge text-accent fs-1 me-4"></i>
+                        <div>
+                            <h5 class="fw-bold">Instant Withdrawals</h5>
+                            <p class="text-secondary">Win cash and withdraw it instantly to your UPI or Bank account with zero delay.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="feature-item d-flex align-items-start">
+                        <i class="bi bi-people text-accent fs-1 me-4"></i>
+                        <div>
+                            <h5 class="fw-bold">Generous Referral Program</h5>
+                            <p class="text-secondary">Invite your friends and earn bonus cash for every referral who joins the arena.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="feature-item d-flex align-items-start">
+                        <i class="bi bi-headset text-accent fs-1 me-4"></i>
+                        <div>
+                            <h5 class="fw-bold">24/7 Customer Support</h5>
+                            <p class="text-secondary">Our dedicated team is always available to help you with any queries or issues.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-5 container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" data-aos="fade-up">Frequently Asked Questions</h2>
+        </div>
+        <div class="accordion mx-auto" id="faqAccordion" style="max-width: 800px;">
+            <div class="accordion-item" data-aos="fade-up">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                        Is playing on [Gaming xx] legal in India?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, gaming on [Gaming xx] is entirely legal as it is based on the "Games of Skill" principle, which is recognized by Indian courts. However, users from restricted states cannot play for cash.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="fade-up">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                        How long do withdrawals take?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        We offer instant withdrawals! Once your request is processed, the money usually hits your account via UPI or Bank Transfer within minutes.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="fade-up">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                        Are there free tournaments available?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Absolutely! We host daily free-entry tournaments where you can hone your skills and still win exciting prizes.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <img src="https://i.ibb.co/99jkv3qt/IMG-20251222-WA0009.jpg" alt="Logo" class="nav-logo mb-3">
+            <h3 class="fw-bold mb-3">[Gaming xx]</h3>
+            <p class="text-secondary" style="max-size: 600px;">
+                The most trusted esports platform in India. Join the revolution of gaming and start winning today.
+            </p>
+            <div class="small text-secondary mt-4">
+                © 2025 [Gaming xx] Esports. All Rights Reserved. <br>
+                Disclaimer: Real money gaming involves financial risk. Please play responsibly.
+            </div>
+        </div>
+    </footer>
+
+    <div class="sticky-mobile-bar">
+        <a href="https://www.mediafire.com/file/4iat3ako72tlkyq/gaming_xx_.apk/file" class="btn btn-accent w-100">
+            <i class="bi bi-download me-2"></i> Download & Get ₹5 Bonus
+        </a>
+    </div>
+
+    <div class="modal fade" id="privacyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Privacy Policy</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>At <span class="text-accent fw-bold">[Gaming xx]</span>, we value your privacy. This policy outlines how we collect and protect your data.</p>
+                    <h6>1. Data Collection</h6>
+                    <p>We collect information such as your name, mobile number, and device details when you register on <span class="text-accent fw-bold">[Gaming xx]</span> to provide a personalized experience.</p>
+                    <h6>2. Usage of Information</h6>
+                    <p>The data helps <span class="text-accent fw-bold">[Gaming xx]</span> to process withdrawals, prevent fraud, and manage tournaments effectively.</p>
+                    <h6>3. Security</h6>
+                    <p><span class="text-accent fw-bold">[Gaming xx]</span> uses industry-standard encryption to ensure your financial and personal data remains secure.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="termsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Terms & Conditions</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>By using <span class="text-accent fw-bold">[Gaming xx]</span>, you agree to the following terms:</p>
+                    <h6>1. Eligibility</h6>
+                    <p>Users must be 18+ years of age to participate in paid tournaments on <span class="text-accent fw-bold">[Gaming xx]</span>.</p>
+                    <h6>2. Account Integrity</h6>
+                    <p>One user is allowed only one account on <span class="text-accent fw-bold">[Gaming xx]</span>. Multiple accounts will lead to permanent bans.</p>
+                    <h6>3. Prize Distribution</h6>
+                    <p><span class="text-accent fw-bold">[Gaming xx]</span> reserves the right to verify results before distributing prize pools.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="fairplayModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Fair Play Policy</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p><span class="text-accent fw-bold">[Gaming xx]</span> is committed to providing a transparent and fair environment.</p>
+                    <h6>1. Anti-Cheat System</h6>
+                    <p><span class="text-accent fw-bold">[Gaming xx]</span> employs advanced detection to identify aimbots, speed hacks, or any third-party software.</p>
+                    <h6>2. Team-Up Rules</h6>
+                    <p>In solo matches, teaming up with other players is strictly prohibited on <span class="text-accent fw-bold">[Gaming xx]</span>.</p>
+                    <h6>3. Consequences</h6>
+                    <p>Any violation detected by the <span class="text-accent fw-bold">[Gaming xx]</span> team will result in immediate disqualification and forfeiture of winnings.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="refundModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Refund & Cancellation Policy</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Thank you for choosing <span class="text-accent fw-bold">[Gaming xx]</span>.</p>
+                    <h6>1. Tournament Cancellation</h6>
+                    <p>If a tournament is cancelled by <span class="text-accent fw-bold">[Gaming xx]</span>, the entry fee will be refunded to your wallet within 24 hours.</p>
+                    <h6>2. User Disconnection</h6>
+                    <p><span class="text-accent fw-bold">[Gaming xx]</span> is not responsible for refunds if a user loses connection during an active match.</p>
+                    <h6>3. Withdrawal Issues</h6>
+                    <p>In case of a failed withdrawal, <span class="text-accent fw-bold">[Gaming xx]</span> will re-credit the amount to your app wallet immediately.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animations
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Initialize Game Slider
+        var swiper = new Swiper(".gameSwiper", {
+            slidesPerView: "auto",
+            centeredSlides: true,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+    </script>
+</body>
+</html>
